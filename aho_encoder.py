@@ -22,15 +22,10 @@ if not args.out_file:
 else:
     fout = args.out_file
 
-
-def f(n):
-    return 255 - n
-
-
+f = [(255 - x) for x in range(256)]
 with open(fin, "rb") as f1:
     with open(fout, "wb") as f2:
-        x = f1.read(1024)
+        x = f1.read(4096)
         while len(x) != 0:
-            res = bytearray(list(map(f, x)))
-            f2.write(res)
-            x = f1.read(1024)
+            f2.write(bytearray([f[(xx + i) % 256] for i, xx in enumerate(x)]))
+            x = f1.read(4096)
