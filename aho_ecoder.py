@@ -22,9 +22,11 @@ if not os.path.isfile(fin):
 
 with open(fin, "rb") as f1:
     with open(fout, "wb") as f2:
-        my_byte = f1.read(1)
-        while my_byte != b"":
-            my_int = int.from_bytes(my_byte, byteorder='big')
-            my_byte2 = (255-my_int).to_bytes(1, byteorder='big')
-            f2.write(my_byte2)
-            my_byte = f1.read(1)
+        x = f1.read(1024)
+        while len(x) != 0:
+            res = []
+            for b in x:
+                res.append(255-b)
+            res = bytes(bytearray(res))
+            f2.write(res)
+            x = f1.read(1024)
