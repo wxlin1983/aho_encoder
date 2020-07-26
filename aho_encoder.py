@@ -1,4 +1,3 @@
-
 import sys
 import argparse
 import os.path
@@ -22,10 +21,10 @@ if not args.out_file:
 else:
     fout = args.out_file
 
-f = [(255 - x) for x in range(256)]
+f = [(255 - (x % 256)) for x in range(512 + 256)]
 with open(fin, "rb") as f1:
     with open(fout, "wb") as f2:
-        x = f1.read(4096)
+        x = f1.read(512)
         while len(x) != 0:
-            f2.write(bytearray([f[(xx + i) % 256] for i, xx in enumerate(x)]))
-            x = f1.read(4096)
+            f2.write(bytearray([f[xx + i] for i, xx in enumerate(x)]))
+            x = f1.read(512)
