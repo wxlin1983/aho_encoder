@@ -1,4 +1,8 @@
 # aho_encoder
-Minimalist file encoding tools
+A minimalist file encoding tool
 
-Please note that the code is used to disguise files such that it's not too trival to recognize their content. The is not a proper encryption for cyber security purpose.
+## Usage
+aho_encoder.py [-h] INPUT [OUTPUT]
+
+Please note that the codes is used to disguise files such that it's not too trival to recognize their content. The is by no mean a proper encryption for cyber security purpose.
+
